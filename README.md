@@ -18,3 +18,12 @@ npm run dev
 ```
 
 Open <http://localhost:3000> in your browser.
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router, React 19)
+- **Styling:** Tailwind CSS v4 + shadcn/ui (`components/ui/*`)
+- **State:** Zustand stores in `store/`
+- **Forms:** react-hook-form + zod
+- **Charts:** recharts
+- **Icons:** lucide-react
