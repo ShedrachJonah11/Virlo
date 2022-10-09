@@ -27,3 +27,19 @@ Open <http://localhost:3000> in your browser.
 - **Forms:** react-hook-form + zod
 - **Charts:** recharts
 - **Icons:** lucide-react
+
+## Project layout
+
+```
+app/
+  (marketing)/   Public marketing site (landing, pricing, about)
+  (auth)/        Login, signup, forgot password, onboarding
+  (dashboard)/   Authenticated app shell
+components/
+  ui/            shadcn primitives
+  dashboard/     Dashboard navbar + sidebar
+  marketing/     Marketing navbar + footer
+lib/             Cross-cutting utilities (api, mock data, helpers)
+store/           Zustand stores
+types/           Shared TypeScript types
+```
