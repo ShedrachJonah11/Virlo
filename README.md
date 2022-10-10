@@ -43,3 +43,12 @@ lib/             Cross-cutting utilities (api, mock data, helpers)
 store/           Zustand stores
 types/           Shared TypeScript types
 ```
+
+## Scripts
+
+| Command         | What it does                          |
+| --------------- | ------------------------------------- |
+| `npm run dev`   | Start the dev server on port 3000.    |
+| `npm run build` | Production build.                     |
+| `npm run start` | Serve the production build.           |
+| `npm run lint` | Run ESLint on the project.            |
