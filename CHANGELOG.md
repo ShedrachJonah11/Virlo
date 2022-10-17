@@ -8,3 +8,5 @@ and uses Semantic Versioning.
 
 ### Added
 - Initial project scaffolding for Virlo (Next.js 16, Tailwind v4, shadcn/ui).
+- Foundational docs: ARCHITECTURE, DEVELOPMENT, STATE, STYLING.
+- `.env.example`, CONTRIBUTING and SECURITY policies.
