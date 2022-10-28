@@ -25,3 +25,23 @@ export function formatCompactNumber(
     maximumFractionDigits: 1,
   }).format(value);
 }
+
+/**
+ * Format a fractional value as a percentage string.
+ *
+ * @param value - Either a fraction (0.085) or a percentage (8.5).
+ * @param opts.alreadyPercent - If true, treat `value` as a percentage,
+ *   not a fraction. Defaults to false.
+ */
+export function formatPercent(
+  value: number,
+  opts: { alreadyPercent?: boolean; digits?: number; locale?: string } = {}
+): string {
+  const { alreadyPercent = false, digits = 1, locale = "en-US" } = opts;
+  const fraction = alreadyPercent ? value / 100 : value;
+  return new Intl.NumberFormat(locale, {
+    style: "percent",
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  }).format(fraction);
+}
