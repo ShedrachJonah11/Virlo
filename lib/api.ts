@@ -1,6 +1,10 @@
 /**
  * Mock API abstraction layer.
  * Replace these with real API calls when the backend is ready.
+ *
+ * Functions in this module always throw typed errors from `lib/errors`
+ * (AuthError, ValidationError, NetworkError) so callers can branch
+ * predictably.
  */
 
 import {
@@ -14,6 +18,7 @@ import {
   mockNotifications,
   mockRecentActivity,
 } from "./mock-data";
+import { AuthError } from "./errors";
 import type {
   User,
   TrendingVideo,
@@ -35,7 +40,9 @@ export async function loginUser(
 ): Promise<User> {
   await delay(800);
   if (email && password) return mockUser;
-  throw new Error("Invalid credentials");
+  throw new AuthError("Invalid email or password", {
+    code: "invalid_credentials",
+  });
 }
 
 export async function signupUser(
@@ -46,13 +53,13 @@ export async function signupUser(
   await delay(800);
   if (name && email && password)
     return { ...mockUser, name, email, onboardingCompleted: false };
-  throw new Error("Signup failed");
+  throw new AuthError("Signup failed", { code: "signup_failed" });
 }
 
 export async function forgotPassword(email: string): Promise<{ ok: boolean }> {
   await delay(800);
   if (email) return { ok: true };
-  throw new Error("Email not found");
+  throw new AuthError("Email not found", { code: "email_not_found", status: 404 });
 }
 
 // Dashboard
