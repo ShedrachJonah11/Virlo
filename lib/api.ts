@@ -18,7 +18,8 @@ import {
   mockNotifications,
   mockRecentActivity,
 } from "./mock-data";
-import { AuthError } from "./errors";
+import { AuthError, ValidationError } from "./errors";
+import { isEmail } from "./validators";
 import type {
   User,
   TrendingVideo,
@@ -38,11 +39,18 @@ export async function loginUser(
   email: string,
   password: string
 ): Promise<User> {
+  if (!isEmail(email)) {
+    throw new ValidationError("Enter a valid email address", [
+      { path: "email", message: "Enter a valid email address" },
+    ]);
+  }
+  if (!password) {
+    throw new ValidationError("Password is required", [
+      { path: "password", message: "Password is required" },
+    ]);
+  }
   await delay(800);
-  if (email && password) return mockUser;
-  throw new AuthError("Invalid email or password", {
-    code: "invalid_credentials",
-  });
+  return mockUser;
 }
 
 export async function signupUser(
@@ -57,9 +65,13 @@ export async function signupUser(
 }
 
 export async function forgotPassword(email: string): Promise<{ ok: boolean }> {
+  if (!isEmail(email)) {
+    throw new ValidationError("Enter a valid email address", [
+      { path: "email", message: "Enter a valid email address" },
+    ]);
+  }
   await delay(800);
-  if (email) return { ok: true };
-  throw new AuthError("Email not found", { code: "email_not_found", status: 404 });
+  return { ok: true };
 }
 
 // Dashboard
