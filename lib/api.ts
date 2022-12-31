@@ -19,7 +19,7 @@ import {
   mockRecentActivity,
 } from "./mock-data";
 import { AuthError, ValidationError } from "./errors";
-import { isEmail } from "./validators";
+import { isEmail, isStrongPassword } from "./validators";
 import type {
   User,
   TrendingVideo,
@@ -58,10 +58,20 @@ export async function signupUser(
   email: string,
   password: string
 ): Promise<User> {
+  const issues = [] as { path: string; message: string }[];
+  if (!name.trim()) issues.push({ path: "name", message: "Name is required" });
+  if (!isEmail(email))
+    issues.push({ path: "email", message: "Enter a valid email address" });
+  if (!isStrongPassword(password))
+    issues.push({
+      path: "password",
+      message: "Use 8+ chars with an uppercase letter, a number and a symbol",
+    });
+  if (issues.length > 0) {
+    throw new ValidationError("Please fix the highlighted fields", issues);
+  }
   await delay(800);
-  if (name && email && password)
-    return { ...mockUser, name, email, onboardingCompleted: false };
-  throw new AuthError("Signup failed", { code: "signup_failed" });
+  return { ...mockUser, name, email, onboardingCompleted: false };
 }
 
 export async function forgotPassword(email: string): Promise<{ ok: boolean }> {
