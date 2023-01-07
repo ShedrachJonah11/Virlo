@@ -28,14 +28,16 @@ import {
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 
+import { ROUTES } from "@/lib/constants/routes";
+
 const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/warmup", label: "Warm Up Engine", icon: Flame },
-  { href: "/viral-finder", label: "Viral Finder", icon: TrendingUp },
-  { href: "/hooks", label: "Hook Generator", icon: Zap },
-  { href: "/analytics", label: "Analytics", icon: BarChart3 },
-  { href: "/billing", label: "Billing", icon: CreditCard },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: ROUTES.dashboard, label: "Dashboard", icon: LayoutDashboard },
+  { href: ROUTES.warmup, label: "Warm Up Engine", icon: Flame },
+  { href: ROUTES.viralFinder, label: "Viral Finder", icon: TrendingUp },
+  { href: ROUTES.hooks, label: "Hook Generator", icon: Zap },
+  { href: ROUTES.analytics, label: "Analytics", icon: BarChart3 },
+  { href: ROUTES.billing, label: "Billing", icon: CreditCard },
+  { href: ROUTES.settings, label: "Settings", icon: Settings },
 ];
 
 function getInitials(name: string) {
