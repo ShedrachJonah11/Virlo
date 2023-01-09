@@ -28,15 +28,16 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { MobileMenuButton } from "./sidebar";
+import { ROUTES } from "@/lib/constants/routes";
 
 const pageTitles: Record<string, string> = {
-  "/dashboard": "Dashboard",
-  "/warmup": "Warm-Up Engine",
-  "/viral-finder": "Viral Content Finder",
-  "/hooks": "Hook Generator",
-  "/analytics": "Analytics",
-  "/billing": "Billing",
-  "/settings": "Settings",
+  [ROUTES.dashboard]: "Dashboard",
+  [ROUTES.warmup]: "Warm-Up Engine",
+  [ROUTES.viralFinder]: "Viral Content Finder",
+  [ROUTES.hooks]: "Hook Generator",
+  [ROUTES.analytics]: "Analytics",
+  [ROUTES.billing]: "Billing",
+  [ROUTES.settings]: "Settings",
 };
 
 function getInitials(name: string) {
@@ -163,11 +164,11 @@ export function DashboardNavbar() {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => router.push("/settings")}>
+          <DropdownMenuItem onClick={() => router.push(ROUTES.settings)}>
             <User className="size-4" />
             Profile
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => router.push("/settings")}>
+          <DropdownMenuItem onClick={() => router.push(ROUTES.settings)}>
             <Settings className="size-4" />
             Settings
           </DropdownMenuItem>
