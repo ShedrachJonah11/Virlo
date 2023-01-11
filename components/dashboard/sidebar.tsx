@@ -40,14 +40,7 @@ const navItems = [
   { href: ROUTES.settings, label: "Settings", icon: Settings },
 ];
 
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-}
+import { getInitials } from "@/lib/initials";
 
 function SidebarNav({ collapsed }: { collapsed: boolean }) {
   const pathname = usePathname();
