@@ -65,12 +65,18 @@ export interface PricingPlan {
   popular?: boolean;
 }
 
+export type NotificationKind = "info" | "success" | "warning" | "alert";
+
 export interface Notification {
   id: string;
   title: string;
   message: string;
   read: boolean;
   createdAt: string;
+  /** Optional category. Defaults to "info" when not set. */
+  kind?: NotificationKind;
+  /** Optional in-app deep link for the notification. */
+  href?: string;
 }
 
 export interface OnboardingData {
