@@ -300,6 +300,8 @@ export const mockNotifications: Notification[] = [
     message: "A trending sound in your niche just went viral. Check it out!",
     read: false,
     createdAt: "2024-03-15T10:30:00Z",
+    kind: "alert",
+    href: "/viral-finder",
   },
   {
     id: "2",
@@ -307,6 +309,8 @@ export const mockNotifications: Notification[] = [
     message: "Your TikTok account warm-up Day 1 is complete.",
     read: false,
     createdAt: "2024-03-14T16:00:00Z",
+    kind: "success",
+    href: "/warmup",
   },
   {
     id: "3",
@@ -314,6 +318,8 @@ export const mockNotifications: Notification[] = [
     message: "Your algorithm score increased by 12 points this week!",
     read: true,
     createdAt: "2024-03-13T09:15:00Z",
+    kind: "info",
+    href: "/analytics",
   },
 ];
 
