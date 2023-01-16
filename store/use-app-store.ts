@@ -8,6 +8,7 @@ interface AppState {
   toggleSidebar: () => void;
   setSidebarOpen: (open: boolean) => void;
   markNotificationRead: (id: string) => void;
+  markAllNotificationsRead: () => void;
   setNotifications: (notifications: Notification[]) => void;
 }
 
@@ -22,5 +23,13 @@ export const useAppStore = create<AppState>((set) => ({
         n.id === id ? { ...n, read: true } : n
       ),
     })),
+  markAllNotificationsRead: () =>
+    set((s) => ({
+      notifications: s.notifications.map((n) => ({ ...n, read: true })),
+    })),
   setNotifications: (notifications) => set({ notifications }),
 }));
+
+/** Convenience selector: number of unread notifications. */
+export const selectUnreadCount = (s: { notifications: Notification[] }) =>
+  s.notifications.filter((n) => !n.read).length;
