@@ -12,7 +12,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useAppStore } from "@/store/use-app-store";
+import { useAppStore, selectUnreadCount } from "@/store/use-app-store";
 import { useAuthStore } from "@/store/use-auth-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -48,10 +48,10 @@ export function DashboardNavbar() {
   const { theme, setTheme } = useTheme();
   const notifications = useAppStore((s) => s.notifications);
   const markNotificationRead = useAppStore((s) => s.markNotificationRead);
+  const unreadCount = useAppStore(selectUnreadCount);
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
 
-  const unreadCount = notifications.filter((n) => !n.read).length;
   const pageTitle = pageTitles[pathname] || "Dashboard";
 
   const handleLogout = () => {
