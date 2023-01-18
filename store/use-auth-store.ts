@@ -6,6 +6,8 @@ interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  /** ISO timestamp of the last successful login. Null when logged out. */
+  loginAt: string | null;
   login: (user: User) => void;
   logout: () => void;
   setLoading: (loading: boolean) => void;
@@ -16,11 +18,28 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: mockUser,
   isAuthenticated: true,
   isLoading: false,
-  login: (user) => set({ user, isAuthenticated: true }),
-  logout: () => set({ user: null, isAuthenticated: false }),
+  loginAt: new Date().toISOString(),
+  login: (user) =>
+    set({
+      user,
+      isAuthenticated: true,
+      loginAt: new Date().toISOString(),
+    }),
+  logout: () =>
+    set({
+      user: null,
+      isAuthenticated: false,
+      loginAt: null,
+    }),
   setLoading: (isLoading) => set({ isLoading }),
   updateUser: (data) =>
     set((state) => ({
       user: state.user ? { ...state.user, ...data } : null,
     })),
 }));
+
+/** Selector: returns the user or throws — for routes that require auth. */
+export const selectUserOrThrow = (s: AuthState): User => {
+  if (!s.user) throw new Error("Expected an authenticated user");
+  return s.user;
+};
