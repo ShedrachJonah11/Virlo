@@ -20,6 +20,7 @@ export function formatRelativeTime(
   locale: string = "en-US"
 ): string {
   const target = date instanceof Date ? date : new Date(date);
+  if (Number.isNaN(target.getTime())) return "";
   const formatter = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
 
   let duration = (target.getTime() - now.getTime()) / 1000;
