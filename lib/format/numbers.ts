@@ -19,11 +19,14 @@ export function formatCompactNumber(
   value: number,
   locale: string = "en-US"
 ): string {
-  if (Math.abs(value) < 1000) return formatNumber(value, locale);
+  if (!Number.isFinite(value)) return "—";
+  // Normalise -0 to 0 so we never render "-0".
+  const v = Object.is(value, -0) ? 0 : value;
+  if (Math.abs(v) < 1000) return formatNumber(v, locale);
   return new Intl.NumberFormat(locale, {
     notation: "compact",
     maximumFractionDigits: 1,
-  }).format(value);
+  }).format(v);
 }
 
 /**
