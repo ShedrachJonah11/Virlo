@@ -8,6 +8,7 @@ export function formatNumber(
   value: number,
   locale: string = "en-US"
 ): string {
+  if (!Number.isFinite(value)) return "—";
   return new Intl.NumberFormat(locale).format(value);
 }
 
