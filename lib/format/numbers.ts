@@ -41,6 +41,7 @@ export function formatPercent(
   value: number,
   opts: { alreadyPercent?: boolean; digits?: number; locale?: string } = {}
 ): string {
+  if (!Number.isFinite(value)) return "—";
   const { alreadyPercent = false, digits = 1, locale = "en-US" } = opts;
   const fraction = alreadyPercent ? value / 100 : value;
   return new Intl.NumberFormat(locale, {
