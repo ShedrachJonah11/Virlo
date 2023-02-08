@@ -1,5 +1,6 @@
 "use client";
 
+import { formatCompactNumber } from "@/lib/format";
 import { useEffect, useState } from "react";
 import {
   Eye,
