@@ -355,3 +355,11 @@ export const mockRecentActivity = [
     time: "2 days ago",
   },
 ];
+
+/** Last 7-day daily engagement total per platform. */
+export const mockEngagementHistory: Record<"tiktok" | "instagram" | "youtube", number[]> = {
+  tiktok: [4200, 4900, 4600, 5300, 6100, 5800, 6700],
+  instagram: [2100, 1900, 2300, 2700, 2500, 2900, 3100],
+  youtube: [1200, 1500, 1400, 1800, 2000, 1900, 2200],
+};
+
