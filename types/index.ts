@@ -85,3 +85,13 @@ export interface OnboardingData {
   keywords: string[];
   contentStyle: string;
 }
+
+export type WarmUpIntensity = "light" | "moderate" | "intense";
+
+export interface WarmUpConfig {
+  niche: string;
+  platforms: Platform[];
+  intensity: WarmUpIntensity;
+  startDate: string;
+}
+
