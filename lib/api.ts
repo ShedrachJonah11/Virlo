@@ -27,6 +27,7 @@ import type {
   AnalyticsData,
   Invoice,
   WarmUpPlan,
+  WarmUpIntensity,
   Notification,
   OnboardingData,
   Platform,
@@ -99,7 +100,7 @@ export async function fetchRecentActivity() {
 export async function generateWarmUpPlan(
   niche: string,
   platform: Platform,
-  intensity: string
+  intensity: WarmUpIntensity
 ): Promise<WarmUpPlan[]> {
   await delay(1200);
   void niche;
