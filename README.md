@@ -52,3 +52,14 @@ types/           Shared TypeScript types
 | `npm run build` | Production build.                     |
 | `npm run start` | Serve the production build.           |
 | `npm run lint` | Run ESLint on the project.            |
+
+## Features
+
+- **Warm-Up Engine** — build day-by-day training plans for each platform
+  and track per-day task completion.
+- **Viral Finder** — search trending videos with filters by platform and a
+  computed viral-probability score per result.
+- **Hook Generator** — produce candidate opening hooks with style + score.
+- **Analytics** — engagement, views and algorithm-score charts with
+  period-over-period growth.
+- **Settings & Billing** — profile management, plan switching, invoice history.
