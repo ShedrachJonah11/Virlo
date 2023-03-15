@@ -35,6 +35,18 @@ import type {
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+/**
+ * For the mock layer only: simulate transient network failures so
+ * the UI's retry / error states are exercised in dev.
+ */
+function maybeFail(probability: number, message: string): void {
+  if (process.env.NEXT_PUBLIC_MOCK_FAIL !== "1") return;
+  if (Math.random() < probability) {
+    throw new Error(message);
+  }
+}
+
+
 // Auth
 export async function loginUser(
   email: string,
