@@ -126,6 +126,7 @@ export async function fetchTrendingVideos(
   platform?: Platform
 ): Promise<TrendingVideo[]> {
   await delay(700);
+  maybeFail(0.1, "Failed to fetch trending videos");
   if (platform) return mockTrendingVideos.filter((v) => v.platform === platform);
   return mockTrendingVideos;
 }
