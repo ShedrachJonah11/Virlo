@@ -100,6 +100,7 @@ export async function forgotPassword(email: string): Promise<{ ok: boolean }> {
 // Dashboard
 export async function fetchStats() {
   await delay(500);
+  maybeFail(0.05, "Failed to load dashboard stats");
   return mockStats;
 }
 
@@ -145,6 +146,7 @@ export async function generateHooks(
 // Analytics
 export async function fetchAnalytics(): Promise<AnalyticsData[]> {
   await delay(600);
+  maybeFail(0.05, "Failed to load analytics");
   return mockAnalytics;
 }
 
