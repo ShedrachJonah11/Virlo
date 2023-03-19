@@ -33,6 +33,9 @@ import type {
   Platform,
 } from "@/types";
 
+/** Alias clarifying that an API function returns a promise. */
+export type ApiPromise<T> = Promise<T>;
+
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
