@@ -7,24 +7,27 @@ and uses Semantic Versioning.
 ## [Unreleased]
 
 ### Added
-- Initial project scaffolding for Virlo (Next.js 16, Tailwind v4, shadcn/ui).
-- Foundational docs: ARCHITECTURE, DEVELOPMENT, STATE, STYLING.
-- `.env.example`, CONTRIBUTING and SECURITY policies.
-- `lib/format` (numbers, currency, duration, bytes, plural, relative time).
-- `lib/date` (parse, format, ranges, weekday helpers).
-- `lib/validators` (email, password strength, http url, username).
-- `lib/errors` (AppError + AuthError/NetworkError/ValidationError subclasses).
-- `lib/constants` (app, platforms, routes, plan limits).
-- `lib/hooks` (debounce, throttle, toggle, counter, previous, localStorage,
-  media query, window size, copy to clipboard, click outside, keypress,
-  interval, timeout, online status, prefers reduced motion, document
-  visibility, async, event listener).
-- `lib/analytics` summarisation helpers and `growthRate`.
-- Structured `lib/logger`, SSR-safe `lib/storage`.
+- Project scaffolding (Next.js 16, Tailwind v4, shadcn/ui).
+- Foundational docs: ARCHITECTURE, DEVELOPMENT, STATE, STYLING, API.
+- `.env.example`, CONTRIBUTING, SECURITY, CODE_OF_CONDUCT.
+- Utility modules under `lib/`:
+  - `format`, `date`, `validators`, `errors`, `constants`,
+    `analytics`, `hooks`, `api`, `social`, `dom`, `hashing`,
+    `strings`, `animation`, `notifications`.
+  - Standalone helpers: `cn`, `cx`, `safe-json`, `array`, `sort`,
+    `range`, `promise`, `string`, `seo`, `uuid`, `result`, `option`,
+    `env`, `url`, `keys`, `logger`, `storage`, `initials`,
+    `json-stable-stringify`, `platforms`.
 - Notification `kind` + deep link; `selectUnreadCount` selector.
+- `httpWithRetry` only retries transient (5xx / fetch) failures.
+- `useAppStore.markAllNotificationsRead()`.
+- `useAuthStore.loginAt` + `selectUserOrThrow`.
 
 ### Changed
 - `loginUser` / `signupUser` / `forgotPassword` now throw typed
   `AuthError` / `ValidationError` with structured field issues.
-- Dashboard sidebar and navbar consume the centralised `ROUTES` table.
+- `generateWarmUpPlan` takes a `WarmUpIntensity` (was `string`).
+- Dashboard sidebar + navbar consume the centralised `ROUTES` table.
 - Initials rendering pulled into `lib/initials.ts` and reused.
+- `formatNumber` / `formatCompactNumber` / `formatPercent` /
+  `formatRelativeTime` short-circuit on non-finite inputs.
