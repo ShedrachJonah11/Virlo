@@ -86,7 +86,7 @@ export interface OnboardingData {
   contentStyle: string;
 }
 
-export type WarmUpIntensity = "light" | "moderate" | "intense";
+export type WarmUpIntensity = "low" | "medium" | "high";
 
 export interface WarmUpConfig {
   niche: string;
