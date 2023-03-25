@@ -7,7 +7,7 @@ import { z } from "zod";
 import { Flame, Loader2, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { generateWarmUpPlan } from "@/lib/api";
-import type { WarmUpPlan, Platform } from "@/types";
+import type { WarmUpPlan, Platform , WarmUpIntensity } from "@/types";
 import {
   Card,
   CardContent,
@@ -42,7 +42,7 @@ export default function WarmUpPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [completedTasks, setCompletedTasks] = useState<Set<string>>(new Set());
   const [platform, setPlatform] = useState<string>("tiktok");
-  const [intensity, setIntensity] = useState<string>("medium");
+  const [intensity, setIntensity] = useState<WarmUpIntensity>("medium");
 
   const {
     register,
