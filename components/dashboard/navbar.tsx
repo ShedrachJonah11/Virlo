@@ -28,6 +28,7 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { MobileMenuButton } from "./sidebar";
+import { sortByNewest, notificationToneClass } from "@/lib/notifications";
 import { ROUTES } from "@/lib/constants/routes";
 
 const pageTitles: Record<string, string> = {
@@ -47,6 +48,7 @@ export function DashboardNavbar() {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
   const notifications = useAppStore((s) => s.notifications);
+  const orderedNotifications = sortByNewest(notifications);
   const markNotificationRead = useAppStore((s) => s.markNotificationRead);
   const unreadCount = useAppStore(selectUnreadCount);
   const user = useAuthStore((s) => s.user);
@@ -103,14 +105,14 @@ export function DashboardNavbar() {
               No notifications
             </div>
           ) : (
-            notifications.map((notification) => (
+            orderedNotifications.map((notification) => (
               <DropdownMenuItem
                 key={notification.id}
                 className="flex flex-col items-start gap-1 p-3"
                 onClick={() => markNotificationRead(notification.id)}
               >
                 <div className="flex w-full items-center gap-2">
-                  <span className="font-medium">{notification.title}</span>
+                  <span className={`font-medium ${notificationToneClass(notification.kind)}`}>{notification.title}</span>
                   {!notification.read && (
                     <span className="ml-auto size-2 rounded-full bg-primary" />
                   )}
