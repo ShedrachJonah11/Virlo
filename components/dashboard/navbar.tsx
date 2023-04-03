@@ -28,7 +28,7 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { MobileMenuButton } from "./sidebar";
-import { sortByNewest, notificationToneClass } from "@/lib/notifications";
+import { sortByNewest, notificationToneClass, notificationAge } from "@/lib/notifications";
 import { ROUTES } from "@/lib/constants/routes";
 
 const pageTitles: Record<string, string> = {
@@ -119,6 +119,9 @@ export function DashboardNavbar() {
                 </div>
                 <span className="text-xs text-muted-foreground">
                   {notification.message}
+                </span>
+                <span className="text-[10px] text-muted-foreground">
+                  {notificationAge(notification.createdAt)}
                 </span>
               </DropdownMenuItem>
             ))
