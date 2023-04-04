@@ -43,3 +43,15 @@ export const selectUserOrThrow = (s: AuthState): User => {
   if (!s.user) throw new Error("Expected an authenticated user");
   return s.user;
 };
+
+/** Selector: true when the current user is on the given (or higher) plan. */
+const PLAN_RANK: Record<NonNullable<User["plan"]>, number> = {
+  free: 0,
+  starter: 1,
+  pro: 2,
+};
+export const selectHasPlan =
+  (minimum: User["plan"]) =>
+  (s: AuthState): boolean =>
+    s.user ? PLAN_RANK[s.user.plan] >= PLAN_RANK[minimum] : false;
+
