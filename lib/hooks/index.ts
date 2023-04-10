@@ -17,3 +17,4 @@ export * from "./use-prefers-reduced-motion";
 export * from "./use-document-visibility";
 export * from "./use-async";
 export * from "./use-event-listener";
+export * from "./use-disclosure";
