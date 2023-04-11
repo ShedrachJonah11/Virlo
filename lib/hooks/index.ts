@@ -18,3 +18,4 @@ export * from "./use-document-visibility";
 export * from "./use-async";
 export * from "./use-event-listener";
 export * from "./use-disclosure";
+export * from "./use-controllable-state";
