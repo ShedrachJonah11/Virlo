@@ -19,3 +19,4 @@ export * from "./use-async";
 export * from "./use-event-listener";
 export * from "./use-disclosure";
 export * from "./use-controllable-state";
+export * from "./use-search";
