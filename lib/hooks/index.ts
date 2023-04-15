@@ -21,3 +21,4 @@ export * from "./use-disclosure";
 export * from "./use-controllable-state";
 export * from "./use-search";
 export * from "./use-pagination";
+export * from "./use-selection";
