@@ -63,3 +63,15 @@ types/           Shared TypeScript types
 - **Analytics** — engagement, views and algorithm-score charts with
   period-over-period growth.
 - **Settings & Billing** — profile management, plan switching, invoice history.
+
+## Environment variables
+
+Copy `.env.example` to `.env.local` and fill in any values you want
+to override:
+
+```bash
+cp .env.example .env.local
+```
+
+The app reads these via `lib/env.ts`. Required values are validated
+at module load via `requireEnv(...)`.
