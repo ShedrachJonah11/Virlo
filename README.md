@@ -75,3 +75,15 @@ cp .env.example .env.local
 
 The app reads these via `lib/env.ts`. Required values are validated
 at module load via `requireEnv(...)`.
+
+## Documentation
+
+Deeper docs live in [`docs/`](./docs):
+
+- [`ARCHITECTURE`](./docs/ARCHITECTURE.md) — module layout.
+- [`DEVELOPMENT`](./docs/DEVELOPMENT.md) — running locally.
+- [`STATE`](./docs/STATE.md) — Zustand store conventions.
+- [`STYLING`](./docs/STYLING.md) — Tailwind + theming.
+- [`COMPONENTS`](./docs/COMPONENTS.md) — primitive layering.
+- [`API`](./docs/API.md) — API + error contract.
+- [`hooks`](./docs/hooks.md) — custom React hooks.
