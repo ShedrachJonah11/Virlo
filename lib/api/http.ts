@@ -1,8 +1,14 @@
 import { NetworkError } from "@/lib/errors";
+import { createRequestId } from "./request-id";
 
 export interface HttpOptions extends RequestInit {
   /** Optional request timeout in ms. */
   timeoutMs?: number;
+  /**
+   * Override the request id used for log correlation. One is generated
+   * per call when omitted.
+   */
+  requestId?: string;
 }
 
 /**
@@ -27,9 +33,13 @@ export async function http<T>(
     else signal.addEventListener("abort", () => controller.abort(), { once: true });
   }
 
+  const requestId = (init as HttpOptions).requestId ?? createRequestId();
+  const headers = new Headers(init.headers);
+  if (!headers.has("X-Request-Id")) headers.set("X-Request-Id", requestId);
+
   let response: Response;
   try {
-    response = await fetch(url, { ...init, signal: controller.signal });
+    response = await fetch(url, { ...init, headers, signal: controller.signal });
   } catch (cause) {
     throw new NetworkError("Network request failed", { cause });
   } finally {
