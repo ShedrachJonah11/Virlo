@@ -19,7 +19,7 @@ export interface HttpOptions extends RequestInit {
  */
 export async function http<T>(
   url: string,
-  { timeoutMs, signal, ...init }: HttpOptions = {}
+  { timeoutMs, signal, requestId, ...init }: HttpOptions = {}
 ): Promise<T> {
   const controller = new AbortController();
   const timer =
@@ -33,9 +33,9 @@ export async function http<T>(
     else signal.addEventListener("abort", () => controller.abort(), { once: true });
   }
 
-  const requestId = (init as HttpOptions).requestId ?? createRequestId();
+  const id = requestId ?? createRequestId();
   const headers = new Headers(init.headers);
-  if (!headers.has("X-Request-Id")) headers.set("X-Request-Id", requestId);
+  if (!headers.has("X-Request-Id")) headers.set("X-Request-Id", id);
 
   let response: Response;
   try {
