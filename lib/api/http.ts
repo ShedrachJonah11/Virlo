@@ -54,5 +54,13 @@ export async function http<T>(
 
   // 204 No Content
   if (response.status === 204) return undefined as T;
+
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) {
+    // Server promised JSON but didn't deliver — surface the body as-is
+    // so the caller can debug.
+    const text = await response.text();
+    throw new NetworkError(`Expected JSON response, got: ${text.slice(0, 120)}`);
+  }
   return (await response.json()) as T;
 }
