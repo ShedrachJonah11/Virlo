@@ -17,9 +17,25 @@ const LEVEL_ORDER: Record<Level, number> = {
 const MIN_LEVEL: Level =
   process.env.NODE_ENV === "production" ? "info" : "debug";
 
+const REDACTED_KEYS = new Set([
+  "password",
+  "token",
+  "accessToken",
+  "refreshToken",
+  "authorization",
+]);
+
+function redact(context: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(context)) {
+    out[key] = REDACTED_KEYS.has(key) ? "[redacted]" : value;
+  }
+  return out;
+}
+
 function log(level: Level, message: string, context?: Record<string, unknown>) {
   if (LEVEL_ORDER[level] < LEVEL_ORDER[MIN_LEVEL]) return;
-  const payload = context ? { message, ...context } : message;
+  const payload = context ? { message, ...redact(context) } : message;
   // eslint-disable-next-line no-console
   console[level === "debug" ? "log" : level](payload);
 }
