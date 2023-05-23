@@ -19,6 +19,7 @@ import {
   mockRecentActivity,
 } from "./mock-data";
 import { AuthError, ValidationError } from "./errors";
+import { validateOnboarding } from "./onboarding";
 import { isEmail, isStrongPassword } from "./validators";
 import type {
   User,
@@ -183,7 +184,8 @@ export async function updateProfile(data: Partial<User>): Promise<User> {
 export async function completeOnboarding(
   data: OnboardingData
 ): Promise<{ ok: boolean }> {
+  // Throws ValidationError if the payload is incomplete.
+  validateOnboarding(data);
   await delay(1000);
-  void data;
   return { ok: true };
 }
