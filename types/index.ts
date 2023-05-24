@@ -32,6 +32,8 @@ export interface TrendingVideo {
   viralProbability: number;
   platform: Platform;
   thumbnail: string;
+  /** ISO timestamp when the video was posted; optional for legacy rows. */
+  postedAt?: string;
 }
 
 export interface Hook {
