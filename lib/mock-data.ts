@@ -40,6 +40,7 @@ export const mockTrendingVideos: TrendingVideo[] = [
     viralProbability: 92,
     platform: "tiktok",
     thumbnail: "",
+    postedAt: "2024-03-12T14:00:00Z",
   },
   {
     id: "2",
@@ -70,6 +71,7 @@ export const mockTrendingVideos: TrendingVideo[] = [
     viralProbability: 98,
     platform: "tiktok",
     thumbnail: "",
+    postedAt: "2024-03-14T09:30:00Z",
   },
   {
     id: "5",
