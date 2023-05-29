@@ -22,3 +22,4 @@ export * from "./use-controllable-state";
 export * from "./use-search";
 export * from "./use-pagination";
 export * from "./use-selection";
+export * from "./use-debounced-callback";
