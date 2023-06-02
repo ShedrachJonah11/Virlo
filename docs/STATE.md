@@ -23,3 +23,15 @@ development.
   re-renders.
 - Co-locate stores with their domain: app-wide UI -> `useAppStore`,
   per-feature state -> a dedicated store under `store/`.
+
+## Selectors
+
+Prefer named selectors over inline lambdas when:
+- The same shape is read from > 1 place.
+- The selection is non-trivial (filters, sorts, derived counts).
+
+Exported selectors live next to the store they read from, e.g.
+`selectUnreadCount` in `store/use-app-store.ts` and
+`selectHasPlan(min)` in `store/use-auth-store.ts`. This keeps the
+store + its derivations in one file.
+
