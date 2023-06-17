@@ -28,3 +28,16 @@ export function setToastSink(sink: ToastSink): void {
 export function toast(options: ToastOptions): void {
   currentSink(options);
 }
+
+export const toastSuccess = (title: string, description?: string) =>
+  toast({ title, description, kind: "success" });
+
+export const toastError = (title: string, description?: string) =>
+  toast({ title, description, kind: "error" });
+
+export const toastWarning = (title: string, description?: string) =>
+  toast({ title, description, kind: "warning" });
+
+export const toastInfo = (title: string, description?: string) =>
+  toast({ title, description, kind: "info" });
+
