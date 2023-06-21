@@ -1,24 +1,26 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { getItem, setItem } from "@/lib/storage";
+import { getItem, removeItem, setItem } from "@/lib/storage";
+
+export type UseLocalStorage<T> = readonly [
+  T,
+  (value: T | ((prev: T) => T)) => void,
+  () => void,
+];
 
 /**
  * Like `useState`, but persisted to localStorage under `key`.
- * SSR-safe: first render returns `initial`, then re-reads from storage
- * on the client after hydration.
+ *
+ * - SSR-safe: first render returns `initial`, then re-reads from
+ *   storage on the client after hydration.
+ * - The returned tuple is `[value, setValue, remove]`.
  */
-export function useLocalStorage<T>(
-  key: string,
-  initial: T
-): [T, (value: T | ((prev: T) => T)) => void] {
+export function useLocalStorage<T>(key: string, initial: T): UseLocalStorage<T> {
   const [value, setValue] = useState<T>(initial);
 
-  // Hydrate from storage on mount
   useEffect(() => {
     setValue(getItem<T>(key, initial));
-    // We intentionally don't depend on `initial` — it's the fallback,
-    // not a reactive source.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 
@@ -34,5 +36,10 @@ export function useLocalStorage<T>(
     [key]
   );
 
-  return [value, update];
+  const remove = useCallback(() => {
+    removeItem(key);
+    setValue(initial);
+  }, [key, initial]);
+
+  return [value, update, remove] as const;
 }
