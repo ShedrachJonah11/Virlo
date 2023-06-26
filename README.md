@@ -93,3 +93,6 @@ Deeper docs live in [`docs/`](./docs):
 - [`COMPONENTS`](./docs/COMPONENTS.md) — primitive layering.
 - [`API`](./docs/API.md) — API + error contract.
 - [`hooks`](./docs/hooks.md) — custom React hooks.
+- [`UTILITIES`](./docs/UTILITIES.md) — quick reference for lib/*.
+- [`TESTING`](./docs/TESTING.md) — testing strategy.
+- [`ERRORS`](./docs/ERRORS.md) — error subclasses + codes.
