@@ -9,3 +9,4 @@ export * from "./list";
 export * from "./score";
 export * from "./percent-delta";
 export * from "./handle";
+export * from "./thumbnail";
