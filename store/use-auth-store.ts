@@ -55,3 +55,6 @@ export const selectHasPlan =
   (s: AuthState): boolean =>
     s.user ? PLAN_RANK[s.user.plan] >= PLAN_RANK[minimum] : false;
 
+export const selectIsLoggedIn = (s: AuthState): boolean =>
+  s.isAuthenticated && s.user !== null;
+
