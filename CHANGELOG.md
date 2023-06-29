@@ -39,6 +39,14 @@ and uses Semantic Versioning.
 - Accessibility: `announce()` aria-live helper.
 - `validateOnboarding` runs structured input validation server-side.
 
+
+
+- `getJson` / `postJson` typed wrappers.
+- `videoUrl` deep-link builder (per platform).
+- `thumbnailPlaceholder` deterministic gradient.
+- `useLocalStorage` exposes `remove()`.
+- `selectIsLoggedIn` selector.
+
 ### Changed
 - `loginUser` / `signupUser` / `forgotPassword` throw typed
   `AuthError` / `ValidationError` with structured field issues.
