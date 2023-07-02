@@ -8,9 +8,14 @@ import { useEffect, useRef, useState } from "react";
  */
 export function useThrottle<T>(value: T, interval: number = 300): T {
   const [throttled, setThrottled] = useState(value);
-  const lastRun = useRef<number>(Date.now());
+  const lastRun = useRef<number>(0);
 
   useEffect(() => {
+    if (lastRun.current === 0) {
+      lastRun.current = Date.now();
+      setThrottled(value);
+      return;
+    }
     const now = Date.now();
     const elapsed = now - lastRun.current;
 
