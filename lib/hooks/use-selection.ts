@@ -19,7 +19,11 @@ export function useSelection<T>(initial: Iterable<T> = []): UseSelectionApi<T> {
   const toggle = useCallback((item: T) => {
     setSelected((prev) => {
       const next = new Set(prev);
-      next.has(item) ? next.delete(item) : next.add(item);
+      if (next.has(item)) {
+        next.delete(item);
+      } else {
+        next.add(item);
+      }
       return next;
     });
   }, []);
