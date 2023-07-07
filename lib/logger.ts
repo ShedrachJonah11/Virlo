@@ -36,7 +36,6 @@ function redact(context: Record<string, unknown>): Record<string, unknown> {
 function log(level: Level, message: string, context?: Record<string, unknown>) {
   if (LEVEL_ORDER[level] < LEVEL_ORDER[MIN_LEVEL]) return;
   const payload = context ? { message, ...redact(context) } : message;
-  // eslint-disable-next-line no-console
   console[level === "debug" ? "log" : level](payload);
 }
 
