@@ -17,7 +17,6 @@ export type ToastSink = (options: ToastOptions) => void;
 
 let currentSink: ToastSink = ({ title, description, kind }) => {
   // Fallback: log to console until a real sink is registered.
-  // eslint-disable-next-line no-console
   console.log(`[toast:${kind ?? "info"}] ${title}${description ? ` — ${description}` : ""}`);
 };
 
