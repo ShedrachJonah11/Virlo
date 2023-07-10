@@ -14,7 +14,9 @@ export function usePrevious<T>(value: T): T | undefined {
 
   useEffect(() => {
     if (!Object.is(current, value)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPrev(current);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrent(value);
     }
   }, [value, current]);
