@@ -13,6 +13,7 @@ export function useThrottle<T>(value: T, interval: number = 300): T {
   useEffect(() => {
     if (lastRun.current === 0) {
       lastRun.current = Date.now();
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setThrottled(value);
       return;
     }
@@ -21,6 +22,7 @@ export function useThrottle<T>(value: T, interval: number = 300): T {
 
     if (elapsed >= interval) {
       lastRun.current = now;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setThrottled(value);
       return;
     }
