@@ -22,7 +22,6 @@ export function useThrottle<T>(value: T, interval: number = 300): T {
 
     if (elapsed >= interval) {
       lastRun.current = now;
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setThrottled(value);
       return;
     }
