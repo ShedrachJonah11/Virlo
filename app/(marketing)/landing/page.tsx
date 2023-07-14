@@ -1,4 +1,10 @@
 import Link from "next/link";
+
+const CHART_HEIGHTS = [
+  35, 52, 41, 68, 49, 73, 58, 82, 64, 91,
+  55, 78, 47, 86, 62, 95, 71, 88, 76, 99,
+] as const;
+
 import {
   Flame,
   TrendingUp,
@@ -279,17 +285,16 @@ export default function LandingPage() {
                       ))}
                     </div>
 
-                    {/* Chart placeholder */}
+                    {/* Chart placeholder — deterministic heights so server and
+                        client agree on hydration. */}
                     <div className="rounded-lg border bg-card p-4">
                       <div className="mb-3 h-3 w-32 rounded bg-muted" />
                       <div className="flex h-32 items-end gap-1">
-                        {Array.from({ length: 20 }).map((_, i) => (
+                        {CHART_HEIGHTS.map((height, i) => (
                           <div
                             key={i}
                             className="flex-1 rounded-t bg-primary/20"
-                            style={{
-                              height: `${Math.random() * 80 + 20}%`,
-                            }}
+                            style={{ height: `${height}%` }}
                           />
                         ))}
                       </div>
