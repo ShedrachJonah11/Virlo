@@ -18,7 +18,7 @@ import {
   mockNotifications,
   mockRecentActivity,
 } from "./mock-data";
-import { AuthError, ValidationError } from "./errors";
+import { ValidationError } from "./errors";
 import { validateOnboarding } from "./onboarding";
 import { isEmail, isStrongPassword } from "./validators";
 import type {
